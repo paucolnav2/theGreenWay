@@ -1,28 +1,53 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useRastreador } from '../hooks/useRastreador'; 
 
 export default function BotonTurno() {
+  // trabaja o no
   const { activo, mensaje, alternar } = useRastreador();
 
-  return (
 
-    <View className="items-center mt-5 w-full">
+  if (!activo) {
+    return (
+      <View className="w-full items-center">
   
-      <Text className="text-lg font-bold mb-3">
-        Estado: {activo ? "TRABAJANDO" : "DESCANSANDO"}
-      </Text>
-      
-      <Text className="text-blue-600 mb-5 text-center px-5">
-        {mensaje}
-      </Text>
-      <View className="w-[200px]">
-        <Button 
-          title={activo ? "TERMINAR" : "EMPEZAR"}
+
+        {/* Boton ubi*/}
+        <TouchableOpacity 
+          className="w-full h-[200px] bg-[#32CD32] justify-center items-center rounded-2xl shadow-lg"
           onPress={alternar}
-          color={activo ? "red" : "green"} 
-        />
+        >
+          <Text className="text-white text-3xl font-bold">
+            INICIAR RUTA
+          </Text>
+        </TouchableOpacity>
+        
       </View>
+    );
+  }
+
+  return (
+    <View className="w-full items-center">
+
+      {/* Estado trabajador */}
+      <TouchableOpacity 
+        className="w-full h-[200px] bg-[#32CD32] justify-center items-center rounded-2xl shadow-lg"
+        onPress={alternar}
+      >
+        <Text className="text-white text-2xl font-bold">
+          TERMINAR TURNO
+        </Text>
+      </TouchableOpacity>
+
+      {/* coords */}
+      <View className="mt-8 p-4 bg-gray-100 rounded-lg w-full">
+        <Text className="text-center text-xs text-gray-500 mb-1">
+          DATOS gps:
+          {mensaje}
+        </Text>
+
+      </View>
+
     </View>
   );
 }

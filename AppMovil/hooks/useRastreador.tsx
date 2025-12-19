@@ -5,35 +5,39 @@ import { Alert } from 'react-native';
 export function useRastreador() {
   const [activo, setActivo] = useState(false);
   const [mensaje, setMensaje] = useState("sin activar");
-  const encenderGPS = () => {
-    setMensaje("pidiendo permiso...");
 
-    Location.requestForegroundPermissionsAsync()
-      .then((resultado) => {
-        if (resultado.status !== 'granted') {
-          Alert.alert("error", "falta permiso de gps");
-          return;
-        }
+  // https://stackoverflow.com/questions/76083826/how-do-i-get-the-current-location-in-react-native-expo
 
-        setActivo(true);
-        setMensaje("buscando satelites...");
+  const encenderGPS = async () => {
+    try {
+      setMensaje("pidiendo permiso...");
 
-        Location.getCurrentPositionAsync({})
-          .then((ubicacion) => {
-            const lat = ubicacion.coords.latitude;
-            const lon = ubicacion.coords.longitude;
-            setMensaje("lat: " + lat + " lon: " + lon);
-          })
-          .catch((error) => {
-            setMensaje("error buscando: " + error.message);
-          });
-      })
-      .catch((error) => {
-        Alert.alert("error grave", error.message);
-      });
+ 
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== "granted") {
+        Alert.alert("Error", "Permiso de ubicación denegado");
+        setMensaje("Falta permiso");
+        return;
+      }
+
+      setActivo(true);
+      setMensaje("buscando satelites...");
+
+     
+      let location = await Location.getCurrentPositionAsync({});
+      
+      const lat = location.coords.latitude;
+      const lon = location.coords.longitude;
+      
+      setMensaje("lat: " + lat + " lon: " + lon);
+
+    } catch (error) {
+      console.error("Error en GPS:", error); 
+      //setMensaje("Error: " + error.message);
+    }
   };
 
-  // funcion interruptor
   const alternar = () => {
     if (activo) {
       setActivo(false);

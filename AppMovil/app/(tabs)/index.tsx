@@ -1,20 +1,22 @@
-import BotonTurno from '@/components/BotonTurno';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
+import BotonTurno from '@/components/BotonTurno';
 
 export default function HomeScreen() {
   return (
 
-    <View className="flex-1 bg-white pt-">
-      <View className="flex-1 justify-center items-center">
-        
-        <Text className="text-3xl font-bold text-green-700 mb-10">
-          GreenDelivery s1
+    <View className="flex-1 justify-center items-center bg-white p-5">
+      
+      <View className="items-center mb-10">
+        <Text className="text-4xl font-bold text-gray-800">
+          GreenDelivery sprint1
         </Text>
-        
-        <BotonTurno />
-        
       </View>
+
+      <View className="w-full items-center">
+        <BotonTurno />
+      </View>
+
     </View>
   );
 }
