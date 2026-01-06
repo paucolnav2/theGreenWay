@@ -1,31 +1,44 @@
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class GestorCliente implements Runnable {
-    private Socket socket;
-    private final int port;
+    private final Socket socket;
 
-    public GestorCliente(Socket socket, int port) {
+    public GestorCliente(Socket socket) {
         this.socket = socket;
-        this.port = port;
     }
 
     @Override
     public void run() {
-        //conexion BBDD
-        try (ServerSocket ss = new ServerSocket(port)){
-            socket = ss.accept();
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             String linea;
+            String nuevo = "";
 
+            // para debuggear
             while ((linea = br.readLine()) != null) {
-                System.out.println(linea);
+                if (linea.startsWith("GET") || linea.startsWith("POST")) {
+                    System.out.println("Cliente HTTP detectado, cerrando conexión.");
+                    socket.close();
+                    return;
+                }
+                System.out.println("Cliente "+ socket.getInetAddress()+ ": "+linea);
+                nuevo = nuevo + linea;
             }
+            Gson gson = new Gson();
+            Datos d = gson.fromJson(nuevo, Datos.class);
+            //guardar en base de datos
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Cliente desconectado: "+ socket.getInetAddress());
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException ignored) {}
         }
     }
 }
