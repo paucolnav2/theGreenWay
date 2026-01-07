@@ -1,4 +1,5 @@
 import java.util.*;
+import BBDD.BBDD;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,5 +7,7 @@ public class Main {
 
         System.out.println("Bienvenido al programa \n***********************************************************");
 
+        BBDD polola = new BBDD();
+        polola.conectarBBDD();
     }
 }
