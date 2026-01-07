@@ -15,7 +15,7 @@ public class BBDD {
             System.out.println(conexion);
             Statement statement = conexion.createStatement();
             {
-                String script1 = "INSERT INTO usuarios VALUES ('Pollas');";
+                String script1 = "INSERT INTO usuarios VALUES ('Prueba');";
                 String script2 = "INSERT INTO logs VALUES (34.5, 23.5, 0);";
                 statement.execute(script1);
                 statement.execute(script2);
