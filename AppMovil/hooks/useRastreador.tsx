@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import * as Location from 'expo-location';
 import { Alert } from 'react-native';
+import { useServidor } from './useServidor';
 
-export function useRastreador() {
+export function useRastreador(idUsuario: any) {
   const [activo, setActivo] = useState(false);
   const [mensaje, setMensaje] = useState("sin activar");
 
   // https://stackoverflow.com/questions/76083826/how-do-i-get-the-current-location-in-react-native-expo
-
+  const {enviarCoordenadas}=useServidor();
   const encenderGPS = async () => {
     try {
       setMensaje("pidiendo permiso...");
@@ -31,10 +32,11 @@ export function useRastreador() {
       const lon = location.coords.longitude;
       
       setMensaje("lat: " + lat + " lon: " + lon);
+      enviarCoordenadas(lat, lon, idUsuario);
 
     } catch (error) {
-      console.error("Error en GPS:", error); 
-      //setMensaje("Error: " + error.message);
+      console.error("Error en GPS:"); 
+     
     }
   };
 

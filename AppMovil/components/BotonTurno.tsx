@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useRastreador } from '../hooks/useRastreador'; 
 
-export default function BotonTurno() {
+export default function BotonTurno({ idUsuario }: any) {
   // trabaja o no
-  const { activo, mensaje, alternar } = useRastreador();
+  const { activo, mensaje, alternar } = useRastreador(idUsuario);
 
 
   if (!activo) {
@@ -31,7 +31,7 @@ export default function BotonTurno() {
 
       {/* Estado trabajador */}
       <TouchableOpacity 
-        className="w-full h-[200px] bg-[#32CD32] justify-center items-center rounded-2xl shadow-lg"
+        className="w-full h-[200px] bg-red-500 justify-center items-center rounded-2xl shadow-lg"
         onPress={alternar}
       >
         <Text className="text-white text-2xl font-bold">
