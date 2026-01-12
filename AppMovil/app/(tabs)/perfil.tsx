@@ -1,19 +1,19 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter, useGlobalSearchParams } from 'expo-router';
-import { Ionicons } from '@react-native-vector-icons/ionicons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function PerfilScreen() {
   const router = useRouter();
   const { idUsuario } = useGlobalSearchParams();
   const cerrarSesion = () => {
-    router.replace('/'); 
+    router.replace('/login'); 
   };
 
   return (
     <View className="flex-1 bg-white items-center p-5 pt-20">
       <View className="w-32 h-32 bg-gray-200 rounded-full items-center justify-center mb-5 border-4 border-[#32CD32]">
-        <Text className="text-6xl"><Ionicons name="accessibility-outline" color="#000000ff" size={20} /></Text>
+         <Ionicons name="accessibility-outline" color="#000000ff" size={20} />
       </View>
       <Text className="text-3xl font-bold text-gray-800 mb-2">
         Rider {idUsuario || "?"}
