@@ -6,7 +6,10 @@ import BBDD.BBDD;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        int puerto = 8080; //temporal
+        Credenciales cre = new Credenciales();
+        cre.inicializar();
+        //llamada función credenciales
+        int puerto = cre.getPORT_SERVER(); //temporal
         Scanner sc = new Scanner(System.in);
         System.out.println("Bienvenido al programa \n***********************************************************");
 
