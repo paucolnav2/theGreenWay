@@ -12,7 +12,19 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#32CD32', 
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+            backgroundColor: '#32CD32',
+            shadowOpacity: 0, 
+            elevation: 0,
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 22,
+        },
+        headerTitleAlign: 'center',
+
         tabBarButton: HapticTab,
         tabBarStyle: { 
             height: 60,
@@ -24,7 +36,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Ruta',
+          title: 'The Green Way',
           tabBarIcon: ({ color }) => <Ionicons name="map" size={28} color={color} />,
         }}
       />

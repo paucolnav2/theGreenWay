@@ -15,7 +15,7 @@ export default function HomeScreen() {
           Hola, rider {usuario} 
         </Text>
         <Text className="text-gray-400">
-          a trabajar se ha dicho
+          a trabajar
         </Text>
       </View>
 

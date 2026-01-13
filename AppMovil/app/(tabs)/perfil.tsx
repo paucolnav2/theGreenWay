@@ -19,13 +19,13 @@ export default function PerfilScreen() {
         Rider {idUsuario || "?"}
       </Text>
       <Text className="text-gray-500 mb-10">
-        Transportista Oficial
+        Transportista
       </Text>
       <View className="w-full bg-gray-50 p-5 rounded-xl mb-10">
-        <Text className="text-gray-400 mb-2">ESTADÍSTICAS DE HOY</Text>
-        <Text className="text-lg font-bold text-gray-800">Estado: 🟢 Activo</Text>
-        <Text className="text-lg font-bold text-gray-800">Zona: Centro</Text>
-        <Text className="text-lg font-bold text-gray-800">Envíos: 0 (de momento)</Text>
+        <Text className="text-gray-400 mb-2">ESTADÍSTICAS</Text>
+        <Text className="text-lg font-bold text-gray-800"></Text>
+        <Text className="text-lg font-bold text-gray-800"></Text>
+        <Text className="text-lg font-bold text-gray-800"></Text>
       </View>
 
       <TouchableOpacity 
