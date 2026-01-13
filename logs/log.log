@@ -1,0 +1,9 @@
+[2026-01-13 19:28:38] [SEVERE] [Main lambda$main$0] Excepción en el hilo main 
+[2026-01-13 19:29:13] [SEVERE] [Main lambda$main$0] Excepción en el hilo main: / by zero 
+[2026-01-13 19:29:36] [SEVERE] [Main lambda$main$0] Excepción en el hilo main: / by zero. 
+[2026-01-13 19:30:02] [SEVERE] [Main lambda$main$0] Excepción en el hilo main: / by zero. 
+[2026-01-13 19:30:14] [SEVERE] [Main lambda$main$0] Excepción en el hilo main: / by zero. 
+[2026-01-13 19:30:31] [SEVERE] [Main lambda$main$0] Excepción en el hilo main: / by zero. 
+[2026-01-13 19:31:52] [SEVERE] [Main lambda$main$0] Exception in thread main: / by zero. 
+[2026-01-13 19:38:26] [SEVERE] [Main lambda$main$0] Exception in thread main: / by zero. 
+[2026-01-13 19:39:06] [SEVERE] [Main lambda$main$0] Exception in thread main: / by zero. 

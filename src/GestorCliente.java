@@ -27,7 +27,7 @@ public class GestorCliente implements Runnable {
                     socket.close();
                     return;
                 }
-                System.out.println("Cliente "+ socket.getInetAddress()+ ": "+linea);
+                System.out.println("Cliente " + socket.getInetAddress() + ": " + linea);
                 nuevo = nuevo + linea;
             }
             Gson gson = new Gson();
