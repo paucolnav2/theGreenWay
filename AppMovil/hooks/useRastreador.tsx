@@ -23,7 +23,7 @@ export function useRastreador(idUsuario: any) {
       }
 
       setActivo(true);
-      setMensaje("buscando satelites...");
+      setMensaje("cargando...");
 
      
       let location = await Location.getCurrentPositionAsync({});

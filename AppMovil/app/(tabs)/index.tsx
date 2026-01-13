@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useLocalSearchParams } from 'expo-router'; 
+import { useGlobalSearchParams } from 'expo-router'; 
 import BotonTurno from '@/components/BotonTurno';
+import MapView from 'react-native-maps';
 
 export default function HomeScreen() {
-  const { idUsuario } = useLocalSearchParams();
+  const { idUsuario } = useGlobalSearchParams();
   const usuario = idUsuario || "desconocido";
 
   return (
@@ -14,14 +15,26 @@ export default function HomeScreen() {
         <Text className="text-3xl font-bold text-gray-800">
           Hola, rider {usuario} 
         </Text>
-        <Text className="text-gray-400">
-          a trabajar
-        </Text>
+      </View>
+{/*mapa timpo real https://www.npmjs.com/package/react-native-maps*/}
+<View className="w-full h-48 rounded-2xl overflow-hidden border-2 border-gray-100 shadow-sm mb-5 relative">
+        <MapView
+            style={{ width: '100%', height: '100%' }}
+            showsUserLocation={true}
+            followsUserLocation={true}
+            loadingEnabled={true}
+        />
+        
+        <View className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded-md border border-gray-200">
+            <Text className="text-[10px] font-bold text-[#32CD32]">● EN VIVO</Text>
+        </View>
       </View>
 
-      <View className="w-full items-center flex-1">
+
+{/* boton trackear */}
+      
         <BotonTurno idUsuario={usuario} />
-      </View>
+      
 
     </View>
   );
