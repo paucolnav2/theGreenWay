@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GestorCliente implements Runnable {
     private final Socket socket;
@@ -13,6 +15,7 @@ public class GestorCliente implements Runnable {
     public GestorCliente(Socket socket) {
         this.socket = socket;
     }
+    private static final Logger logger = Logger.getLogger(GestorCliente.class.getName());
 
     @Override
     public void run() {
@@ -27,7 +30,7 @@ public class GestorCliente implements Runnable {
                     socket.close();
                     return;
                 }
-                System.out.println("Cliente "+ socket.getInetAddress()+ ": "+linea);
+                System.out.println("Cliente " + socket.getInetAddress() + ": " + linea);
                 nuevo = nuevo + linea;
             }
             Gson gson = new Gson();
@@ -35,7 +38,11 @@ public class GestorCliente implements Runnable {
             //guardar en base de datos
         } catch (IOException e) {
             System.out.println("Cliente desconectado: "+ socket.getInetAddress());
-        } finally {
+        }
+        catch (Exception e) {
+            logger.log(Level.SEVERE, "Exception in thread "+Thread.currentThread().getName()+": "+e.getMessage()+".", e);
+        }
+        finally {
             try {
                 socket.close();
             } catch (IOException ignored) {}
