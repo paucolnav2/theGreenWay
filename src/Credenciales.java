@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Properties;
 
 public class Credenciales {
     private String URL_DATABASE;

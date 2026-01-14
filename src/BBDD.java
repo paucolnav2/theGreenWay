@@ -1,5 +1,3 @@
-package BBDD;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -9,10 +7,16 @@ import java.util.logging.Logger;
 public class BBDD {
     private static final Logger logger = Logger.getLogger(BBDD.class.getName());
     public void conectarBBDD () {
-        String user = "root";
-        String password = "1234";
+        Credenciales cre = new Credenciales();
+        try {
+            cre.inicializar();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Exception in main: "+e.getMessage()+".", e);
+        }
+        String user = cre.getUSER_DATABASE();
+        String password = cre.getPASS_DATABASE();
 
-        String url = "jdbc:mysql://localhost:3307/theGreenWay";
+        String url = cre.getURL_DATABASE();
 
         try (Connection conexion = DriverManager.getConnection(url, user, password)) {
             System.out.println(conexion);
