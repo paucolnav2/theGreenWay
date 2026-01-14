@@ -10,10 +10,30 @@ public class Credenciales {
     }
 
     public void inicializar() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("server.properties"));
-        String linea;
-        while ((linea = br.readLine()) != null) {
-            System.out.println(linea);
+        Properties propiedades = new Properties();
+
+
+        try (FileInputStream fis = new FileInputStream("server.properties")) {
+
+            propiedades.load(fis);
+
+            this.URL_DATABASE = propiedades.getProperty("db.url");
+            this.USER_DATABASE = propiedades.getProperty("db.user");
+            this.PASS_DATABASE = propiedades.getProperty("db.pass");
+
+
+            String portStr = propiedades.getProperty("server.port");
+            if (portStr != null) {
+                this.PORT_SERVER = Integer.parseInt(portStr);
+            }
+
+            System.out.println("Configuración cargada con éxito.");
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: No se encontró el archivo server.properties");
+            throw e;
+        } catch (NumberFormatException e) {
+            System.err.println("Error: El puerto en el archivo no es un número válido.");
+            throw e;
         }
     }
 
