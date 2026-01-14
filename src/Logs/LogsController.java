@@ -27,8 +27,7 @@ public class LogsController {
             logger.setLevel(Level.INFO);
 
         } catch (IOException e) {
-            System.err.println("Error inicializando el sistema de logs: ");
-            e.printStackTrace();
+            System.err.println("Error inicializando el sistema de logs: "+e.getMessage());
         }
     }
 }

@@ -3,8 +3,11 @@ package BBDD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BBDD {
+    private static final Logger logger = Logger.getLogger(BBDD.class.getName());
     public void conectarBBDD () {
         String user = "root";
         String password = "1234";
@@ -21,7 +24,7 @@ public class BBDD {
                 statement.execute(script2);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.log(Level.SEVERE, "Exception in thread "+Thread.currentThread().getName()+": "+e.getMessage()+".", e);
         }
     }
 }
