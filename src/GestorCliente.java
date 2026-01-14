@@ -1,11 +1,8 @@
 import com.google.gson.Gson;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,22 +17,16 @@ public class GestorCliente implements Runnable {
     @Override
     public void run() {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            String linea;
-            String nuevo = "";
+            String nuevo = br.readLine();
+            System.out.println("Cliente " + socket.getInetAddress() + ": " + nuevo);
 
-            // para debuggear
-            while ((linea = br.readLine()) != null) {
-                if (linea.startsWith("GET") || linea.startsWith("POST")) {
-                    System.out.println("Cliente HTTP detectado, cerrando conexión.");
-                    socket.close();
-                    return;
-                }
-                System.out.println("Cliente " + socket.getInetAddress() + ": " + linea);
-                nuevo = nuevo + linea;
-            }
             Gson gson = new Gson();
-            Datos d = gson.fromJson(nuevo, Datos.class);
-            //guardar en base de datos
+            Cliente c = gson.fromJson(nuevo, Cliente.class);
+
+            /*String [] nuevoLista = nuevo.split(",");
+            Cliente c = new Cliente(Double.parseDouble(nuevoLista[0].split(":")[1]), Double.parseDouble(nuevoLista[1].split(":")[1]), Integer.parseInt((nuevoLista[2].split(":")[1]).replace("}","")));*/
+            (new BBDD()).inicializarBBDD(c);
+            System.out.println("Entrada añadida.");
         } catch (IOException e) {
             System.out.println("Cliente desconectado: "+ socket.getInetAddress());
         }
