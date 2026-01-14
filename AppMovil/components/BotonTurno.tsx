@@ -26,7 +26,7 @@ export default function BotonTurno({ idUsuario }: any) {
         />
 
         <Text className="text-white text-3xl font-bold text-center leading-8">
-          {activo ? "TERMINAR\nTURNO" : "INICIAR\nRUTA"}
+          {activo ? "PEDIDO\nENTREGADO" : "INICIAR\nRUTA"}
         </Text>
       </TouchableOpacity>
 
