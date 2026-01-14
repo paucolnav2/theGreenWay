@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Properties;
 
 public class Credenciales {
     private String URL_DATABASE;
@@ -7,6 +8,7 @@ public class Credenciales {
     private int PORT_SERVER;
 
     public Credenciales() {
+
     }
 
     public void inicializar() throws IOException {

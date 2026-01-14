@@ -15,8 +15,14 @@ public class Main {
             logger.log(Level.SEVERE, "Exception in thread "+hilo.getName()+": "+e.getMessage()+".", e);
         });
         LogsController.inicializar();
-        int puerto = 8080; //temporal
-        Scanner sc = new Scanner(System.in);
+        Credenciales cre = new Credenciales();
+        try {
+            cre.inicializar();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Exception in main: "+e.getMessage()+".", e);
+        }
+
+        int puerto = cre.getPORT_SERVER();
         System.out.println("Bienvenido al programa \n***********************************************************");
 
         try (ServerSocket serverSocket = new ServerSocket(puerto)) {

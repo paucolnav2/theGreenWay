@@ -2,3 +2,17 @@
 [2026-01-14 09:58:56] [SEVERE] [Main lambda$main$0] Exception in thread main: Index 0 out of bounds for length 0. 
 [2026-01-14 09:59:54] [SEVERE] [Main lambda$main$0] Exception in thread main: Index 0 out of bounds for length 0. 
 [2026-01-14 10:04:31] [SEVERE] [GestorCliente run] Exception in thread Thread-1: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $. 
+[2026-01-14 13:29:31] [SEVERE] [GestorCliente run] Exception in thread Thread-0: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $. 
+[2026-01-21 22:03:20] [SEVERE] [BBDD inicializarBBDD] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-21 22:07:46] [SEVERE] [BBDD inicializarBBDD] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-21 22:08:57] [SEVERE] [BBDD inicializarBBDD] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-21 22:10:56] [SEVERE] [BBDD inicializarBBDD] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-21 22:24:29] [SEVERE] [GestorCliente run] Exception in thread Thread-1: com.google.gson.stream.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 1 column 63 path $. 
