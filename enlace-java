@@ -1,0 +1,5 @@
+https://adoptium.net/download?link=https%3A%2F%2Fgithub.com%2Fadoptium%2Ftemurin17-binaries%2Freleases%2Fdownload%2Fjdk-17.0.17%252B10%2FOpenJDK17U-jdk_x64_linux_hotspot_17.0.17_10.tar.gz&vendor=Adoptium
+
+
+export JAVA_HOME="/home/<user>/java/jdk-17.0.17+10"
+export PATH=$JAVA_HOME/bin:$PATH

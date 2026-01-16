@@ -35,8 +35,8 @@ export function useRastreador(idUsuario: any) {
       enviarCoordenadas(lat, lon, idUsuario);
 
     } catch (error) {
-      console.error("Error en GPS:"); 
-     
+      console.error("Error en GPS:", error); 
+      setMensaje("Error: " + error); 
     }
   };
 
