@@ -1,18 +1,16 @@
+import TcpSocket from 'react-native-tcp-socket';
 
 export function useServidor() {
-  
 
   const IP_SERVIDOR = "localhost";
   const PUERTO = "8080";
 
-  const enviarCoordenadas = async (latitud: any, longitud: any, idUsuario: any) => {
-    try {
- 
-      const datos = {
-        lat: latitud,
-        lon: longitud,
-        userId: parseInt(idUsuario)
-      };
+  const enviarCoordenadas = (latitud: any, longitud: any, idUsuario: any) => {
+    const datos = {
+      lat: latitud,
+      lon: longitud,
+      userId: parseInt(idUsuario)
+    };
 
       console.log("enviando a java...", datos);
       
@@ -26,13 +24,15 @@ export function useServidor() {
       
       console.log("recibido por el servidor!");
 
-    } catch (error) {
-    
-      console.log("error de conex");
-    }
+    client.on('error', (error) => {
+      console.log("fallo algo en el socket", error);
+    });
+
+    client.on('close', () => {
+      console.log("conexion cerrada");
+    });
   };
 
- 
   return {
     enviarCoordenadas
   };
