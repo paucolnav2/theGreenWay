@@ -2,15 +2,15 @@ CREATE DATABASE theGreenWay;
 USE theGreenWay;
 
 CREATE TABLE usuarios (
-    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    id INT PRIMARY KEY,
     Nombre VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE logs (
-    Id INT AUTO_INCREMENT PRIMARY KEY,
     lat FLOAT,
     lon FLOAT,
     timer TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     idUsuario INT,
-    CONSTRAINT fk FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
+    CONSTRAINT fk FOREIGN KEY (idUsuario) REFERENCES usuarios(id),
+    PRIMARY KEY (timer, idUsuario)
 );
