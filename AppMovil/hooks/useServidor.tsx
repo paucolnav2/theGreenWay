@@ -2,9 +2,8 @@ import TcpSocket from 'react-native-tcp-socket';
 
 export function useServidor() {
 
-  const IP_SERVIDOR = "10.0.2.2"; //solo en el emulador
-  // const IP_SERVIDOR = "172.30.77.46";
-  const PUERTO = 8080; 
+  const IP_SERVIDOR = "localhost";
+  const PUERTO = "8080";
 
   const enviarCoordenadas = (latitud: any, longitud: any, idUsuario: any) => {
     const datos = {
@@ -13,15 +12,17 @@ export function useServidor() {
       userId: parseInt(idUsuario)
     };
 
-    const jsonEnviar = JSON.stringify(datos);
-    console.log("enviando por tcp...", jsonEnviar);
-    const client = TcpSocket.createConnection({
-      port: PUERTO,
-      host: IP_SERVIDOR,
-    }, () => {
-      client.write(jsonEnviar);
-      client.end();
-    });
+      console.log("enviando a java...", datos);
+      
+      await fetch(`${IP_SERVIDOR}:${PUERTO}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos),
+      });
+      
+      console.log("recibido por el servidor!");
 
     client.on('error', (error) => {
       console.log("fallo algo en el socket", error);
