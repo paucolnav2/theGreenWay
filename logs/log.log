@@ -16,3 +16,5 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
 [2026-01-21 22:24:29] [SEVERE] [GestorCliente run] Exception in thread Thread-1: com.google.gson.stream.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 1 column 63 path $. 
+[2026-01-22 12:00:36] [SEVERE] [BBDD inicializarBBDD] Exception in thread Thread-0: Cannot invoke "Cliente.getUserId()" because "cliente" is null. 
+[2026-01-22 12:01:44] [SEVERE] [BBDD inicializarBBDD] Exception in thread Thread-2: Cannot invoke "Cliente.getUserId()" because "cliente" is null. 
