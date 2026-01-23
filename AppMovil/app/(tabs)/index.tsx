@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { useGlobalSearchParams } from 'expo-router'; 
 import BotonTurno from '@/components/BotonTurno';
-import MapView from 'react-native-maps';
+//import MapView from 'react-native-maps';
 
 export default function HomeScreen() {
   const { idUsuario } = useGlobalSearchParams();
@@ -18,12 +18,7 @@ export default function HomeScreen() {
       </View>
 {/*mapa timpo real https://www.npmjs.com/package/react-native-maps*/}
 <View className="w-full h-48 rounded-2xl overflow-hidden border-2 border-gray-100 shadow-sm mb-5 relative">
-        <MapView
-            style={{ width: '100%', height: '100%' }}
-            showsUserLocation={true}
-            followsUserLocation={true}
-            loadingEnabled={true}
-        />
+        
         
         <View className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded-md border border-gray-200">
             <Text className="text-[10px] font-bold text-[#32CD32]">● EN VIVO</Text>

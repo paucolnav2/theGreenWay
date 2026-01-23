@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import "./global.css";
 import 'react-native-reanimated';
+import PermissionsCheckerProvider from '@/presentation/providers/PermissionsCheckerProvider';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
