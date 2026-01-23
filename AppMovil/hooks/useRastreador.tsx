@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import * as Location from 'expo-location';
 import { useServidor } from './useServidor';
 import { usePermissionStore } from '@/presentation/store/usePermissionsStore';
@@ -7,13 +7,15 @@ import { PermissionStatus } from '@/infrastructure/interfaces/location';
 export function useRastreador(idUsuario: any) {
   const [activo, setActivo] = useState(false);
   const [mensaje, setMensaje] = useState("apagado");
+
+  const timerRef = useRef<NodeJS.Timeout | number>(null);
   const { enviarCoordenadas } = useServidor();
 
   // https://stackoverflow.com/questions/76083826/how-do-i-get-the-current-location-in-react-native-expo
  //estructura pdf movileslocation parte 1
  const { locationStatus, requestLocationPermission } = usePermissionStore();
 
-  const capturarYEnviar = async () => {
+  const capturarYEnviar = useCallback(async () => {
     try {
       let location = await Location.getCurrentPositionAsync({});
       const lat = location.coords.latitude;
@@ -25,26 +27,31 @@ export function useRastreador(idUsuario: any) {
       console.log("Error GPS:", error);
       setMensaje("Error obteniendo ubicación");
     }
-  };
+  }, [idUsuario]);
   useEffect(() => {
-    let intervalo: any;
-    if (activo && locationStatus === PermissionStatus.GRANTED) {
-      capturarYEnviar();
-      intervalo = setInterval(capturarYEnviar, 10000);
-    } else if (locationStatus !== PermissionStatus.GRANTED && activo) {
-      setActivo(false);
-      setMensaje("Permiso perdido/denegado");
-    }
+  
+    const cicloRastreo = async () => {
+      if (!activo || locationStatus !== PermissionStatus.GRANTED) return;
 
-    return () => {
-      if (intervalo) clearInterval(intervalo);
+      await capturarYEnviar();
+
+      timerRef.current = setTimeout(cicloRastreo, 5000);
     };
-  }, [activo, locationStatus]);
+
+    if (activo && locationStatus === PermissionStatus.GRANTED) {
+      cicloRastreo(); 
+    }
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [activo, locationStatus, capturarYEnviar]);
 
   const alternar = async () => {
     if (activo) {
       setActivo(false);
       setMensaje("Apagado");
+      
+      if (timerRef.current) clearTimeout(timerRef.current);
     } else {
       if (locationStatus === PermissionStatus.GRANTED) {
         setActivo(true);

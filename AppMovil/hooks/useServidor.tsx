@@ -18,8 +18,10 @@ export function useServidor() {
       port: PUERTO,
       host: IP_SERVIDOR,
     }, () => {
-      client.write(jsonEnviar);
-      client.end();
+      client.write(jsonEnviar, 'utf8', () => {
+        
+        client.end();
+      });
     });
 
     client.on('error', (error) => {
