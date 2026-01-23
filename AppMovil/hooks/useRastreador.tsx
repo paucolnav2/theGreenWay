@@ -15,6 +15,8 @@ export function useRastreador(idUsuario: any) {
  //estructura pdf movileslocation parte 1
  const { locationStatus, requestLocationPermission } = usePermissionStore();
 
+  // ... imports igual que antes ...
+
   const capturarYEnviar = useCallback(async () => {
     try {
       let location = await Location.getCurrentPositionAsync({});
@@ -22,12 +24,16 @@ export function useRastreador(idUsuario: any) {
       const lon = location.coords.longitude;
       
       setMensaje(`Rastreando... \nLat: ${lat.toFixed(4)}\nLon: ${lon.toFixed(4)}`);
-      enviarCoordenadas(lat, lon, idUsuario);
+      
+      await enviarCoordenadas(lat, lon, idUsuario);
+      
     } catch (error) {
-      console.log("Error GPS:", error);
-      setMensaje("Error obteniendo ubicación");
+      console.log("Error en el ciclo:", error);
+      setMensaje("Error enviando o sin respuesta");
     }
   }, [idUsuario]);
+
+// ... resto del useEffect igual que la versión anterior ...
   useEffect(() => {
   
     const cicloRastreo = async () => {
