@@ -8,6 +8,7 @@ public class Credenciales {
     private int PORT_SERVER;
 
     public Credenciales() {
+
     }
 
     public void inicializar() throws IOException {
@@ -28,7 +29,7 @@ public class Credenciales {
                 this.PORT_SERVER = Integer.parseInt(portStr);
             }
 
-            System.out.println("Configuración cargada con éxito.");
+            System.out.println("Configuración cargada con éxito en "+Thread.currentThread().getName());
         } catch (FileNotFoundException e) {
             System.err.println("Error: No se encontró el archivo server.properties");
             throw e;

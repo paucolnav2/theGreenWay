@@ -22,8 +22,7 @@ public class Main {
             logger.log(Level.SEVERE, "Exception in main: "+e.getMessage()+".", e);
         }
 
-        int puerto = cre.getPORT_SERVER(); //temporal
-        Scanner sc = new Scanner(System.in);
+        int puerto = cre.getPORT_SERVER();
         System.out.println("Bienvenido al programa \n***********************************************************");
 
         try (ServerSocket serverSocket = new ServerSocket(puerto)) {

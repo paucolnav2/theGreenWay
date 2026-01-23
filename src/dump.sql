@@ -3,7 +3,8 @@ USE theGreenWay;
 
 CREATE TABLE usuarios (
     id INT PRIMARY KEY,
-    Nombre VARCHAR(255) DEFAULT NULL
+    userName VARCHAR(200) UNIQUE,
+    password VARCHAR(200)
 );
 
 CREATE TABLE logs (
