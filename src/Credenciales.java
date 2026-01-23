@@ -8,6 +8,7 @@ public class Credenciales {
     private int PORT_SERVER;
 
     public Credenciales() {
+
     }
 
     public void inicializar() throws IOException {
