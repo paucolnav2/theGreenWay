@@ -1,38 +1,56 @@
+import TcpSocket from 'react-native-tcp-socket';
 
 export function useServidor() {
   
+  const IP_SERVIDOR = "10.0.2.2"; 
+  const PUERTO = 8080;
 
-  const IP_SERVIDOR = "172.30.77.43"; 
-  const PUERTO = "8080";
-
-  const enviarCoordenadas = async (latitud: any, longitud: any, idUsuario: any) => {
-    try {
- 
+  const enviarCoordenadas = (latitud: any, longitud: any, idUsuario: any) => {
+    
+    return new Promise((resolve, reject) => {
       const datos = {
         lat: latitud,
         lon: longitud,
         userId: parseInt(idUsuario)
       };
 
-      console.log("enviando a java...", datos);
-      
-      await fetch(`http://${IP_SERVIDOR}:${PUERTO}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(datos),
+      const jsonEnviar = JSON.stringify(datos);
+      console.log("enviando por tcp...", jsonEnviar);
+
+      const cliente = TcpSocket.createConnection({
+        port: PUERTO,
+        host: IP_SERVIDOR,
+      }, () => {
+        cliente.write(jsonEnviar + '\n');
+      });
+
+      cliente.on('data', (data) => {
+        const response = data.toString().trim();
+        console.log("Servidor responde:", response);
+
+        if (response.startsWith('RECIBIDO') || response === '1') {
+         
+          cliente.end();
+           resolve(true); 
+        } else {
+       
+           cliente.end();
+           resolve(true); 
+        }
+      });
+
+      cliente.on('error', (error) => {
+        console.log("fallo algo en el socket", error);
+        reject(error);
+      });
+
+      cliente.on('close', () => {
+        console.log("conexion cerrada");
       });
       
-      console.log("recibido por el servidor!");
-
-    } catch (error) {
-    
-      console.log("error de conex");
-    }
+    });
   };
 
- 
   return {
     enviarCoordenadas
   };
