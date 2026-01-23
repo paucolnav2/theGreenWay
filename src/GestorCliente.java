@@ -1,7 +1,8 @@
+import Classes.Cliente;
+import Classes.Usuarios;
 import com.google.gson.Gson;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,16 +17,34 @@ public class GestorCliente implements Runnable {
 
     @Override
     public void run() {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {}
+
+        try (
+                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter salida = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()))
+            ) {
             String nuevo = br.readLine();
             System.out.println("Cliente " + socket.getInetAddress() + ": " + nuevo);
 
-            Gson gson = new Gson();
-            Cliente c = gson.fromJson(nuevo, Cliente.class);
-
             /*String [] nuevoLista = nuevo.split(",");
-            Cliente c = new Cliente(Double.parseDouble(nuevoLista[0].split(":")[1]), Double.parseDouble(nuevoLista[1].split(":")[1]), Integer.parseInt((nuevoLista[2].split(":")[1]).replace("}","")));*/
-            (new BBDD()).inicializarBBDD(c);
+            Classes.Cliente c = new Classes.Cliente(Double.parseDouble(nuevoLista[0].split(":")[1]), Double.parseDouble(nuevoLista[1].split(":")[1]), Integer.parseInt((nuevoLista[2].split(":")[1]).replace("}","")));
+            */
+            if (nuevo.split(",").length == 2) {
+                Gson gson = new Gson();
+                Usuarios u = gson.fromJson(nuevo, Usuarios.class);
+                salida.println((new BBDD()).comprobarCredenciales(u));
+            }
+            else if (nuevo.split(",").length == 3) {
+                Gson gson = new Gson();
+                Cliente c = gson.fromJson(nuevo, Cliente.class);
+                (new BBDD()).insertarCliente(c);
+            }
+            else {
+                //mejorar esto
+                System.out.println("Entrada nula");
+            }
             System.out.println("Entrada añadida.");
         } catch (IOException e) {
             System.out.println("Cliente desconectado: "+ socket.getInetAddress());
