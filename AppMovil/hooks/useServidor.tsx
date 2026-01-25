@@ -51,7 +51,50 @@ export function useServidor() {
     });
   };
 
+
+const validarCredenciales = (usuario: string, clave: string): Promise<boolean> => {
+    return new Promise((resolve, reject) => {
+      
+      
+      const datos = {
+        userName: usuario,  
+        password: clave    
+      };
+      
+
+      /* //
+      const datos = {
+        id: parseInt(usuario),
+        pass: clave
+      };
+      */
+
+      const client = TcpSocket.createConnection({ port: PUERTO, host: IP_SERVIDOR }, () => {
+       client.write(JSON.stringify(datos) + '\n');
+      });
+
+      client.on('data', (data) => {
+        const respuesta = data.toString().trim();
+        console.log("Respuesta servidor:", respuesta);
+        client.end();
+
+        // Si devuelve '1', el login es válido
+        if (respuesta === '1') {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+
+      client.on('error', (error) => {
+        console.log("Error socket:", error);
+        reject(error);
+      });
+    });
+  };
+
   return {
-    enviarCoordenadas
+    enviarCoordenadas,
+    validarCredenciales
   };
 }
