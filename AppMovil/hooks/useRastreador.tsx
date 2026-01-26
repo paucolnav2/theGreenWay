@@ -41,7 +41,7 @@ export function useRastreador(idUsuario: any) {
 
       await capturarYEnviar();
 
-      timerRef.current = setTimeout(cicloRastreo, 5000);
+      timerRef.current = setTimeout(cicloRastreo, 10000);
     };
 
     if (activo && locationStatus === PermissionStatus.GRANTED) {

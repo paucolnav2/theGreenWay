@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View, Touc
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/hooks/useAuth'; 
 
+
 export default function LoginScreen() {
     const { user, pass, error, cargando, setUser, setPass, onLoginPress } = useAuth();
 

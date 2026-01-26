@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useServidor } from '@/hooks/useServidor';
+import CryptoJS from 'crypto-js'
+import { createAnimatedComponent } from 'react-native-reanimated/lib/typescript/css/component';
 
 export function useAuth() {
     const router = useRouter();
@@ -21,7 +23,8 @@ export function useAuth() {
         setCargando(true);
 
         try {
-            const esValido = await validarCredenciales(user, pass);
+            const passEncryptada= CryptoJS.SHA256(pass).toString();
+            const esValido = await validarCredenciales(user, passEncryptada);
             
             if (esValido) {
                 router.replace({

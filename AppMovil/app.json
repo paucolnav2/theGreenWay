@@ -25,7 +25,12 @@
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION"
       ],
-      "package": "com.sercanmar.thegreenway"
+      "package": "com.sercanmar.thegreenway",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAnpS_mg9UllT1ebocO_67wUcO7OCzLTo4" 
+        }
+      }
     },
     "web": {
       "output": "static",
