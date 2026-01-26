@@ -15,8 +15,6 @@ export function useRastreador(idUsuario: any) {
  //estructura pdf movileslocation parte 1
  const { locationStatus, requestLocationPermission } = usePermissionStore();
 
-  // ... imports igual que antes ...
-
   const capturarYEnviar = useCallback(async () => {
     try {
       let location = await Location.getCurrentPositionAsync({});
@@ -33,7 +31,6 @@ export function useRastreador(idUsuario: any) {
     }
   }, [idUsuario]);
 
-// ... resto del useEffect igual que la versión anterior ...
   useEffect(() => {
   
     const cicloRastreo = async () => {

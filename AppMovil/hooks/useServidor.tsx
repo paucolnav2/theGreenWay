@@ -28,16 +28,18 @@ export function useServidor() {
         const response = data.toString().trim();
         console.log("Servidor responde:", response);
 
-        if (response.startsWith('RECIBIDO') || response === '1') {
-         
-          cliente.end();
-           resolve(true); 
+        if (response.startsWith('RECIBIDO')) {
+          resolve(true);
+        } else if (response === '1') {
+          resolve(true);
         } else {
-       
-           cliente.end();
-           resolve(true); 
+          resolve(true);
         }
+
+        cliente.end();
       });
+
+
 
       cliente.on('error', (error) => {
         console.log("fallo algo en el socket", error);
