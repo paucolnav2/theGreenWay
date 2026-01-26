@@ -4,7 +4,7 @@ import { useServidor } from './useServidor';
 import { usePermissionStore } from '@/presentation/store/usePermissionsStore';
 import { PermissionStatus } from '@/infrastructure/interfaces/location';
 
-export function useRastreador(idUsuario: any) {
+export function useRastreador(userName: string) {
   const [activo, setActivo] = useState(false);
   const [mensaje, setMensaje] = useState("apagado");
 
@@ -23,13 +23,13 @@ export function useRastreador(idUsuario: any) {
       
       setMensaje(`Rastreando... \nLat: ${lat.toFixed(4)}\nLon: ${lon.toFixed(4)}`);
       
-      await enviarCoordenadas(lat, lon, idUsuario);
+      await enviarCoordenadas(lat, lon, userName);
       
     } catch (error) {
       console.log("Error en el ciclo:", error);
       setMensaje("Error enviando o sin respuesta");
     }
-  }, [idUsuario]);
+  }, [userName]);
 
   useEffect(() => {
   
