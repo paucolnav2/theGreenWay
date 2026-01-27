@@ -4,7 +4,7 @@ import { useServidor } from './useServidor';
 import { usePermissionStore } from '@/presentation/store/usePermissionsStore';
 import { PermissionStatus } from '@/infrastructure/interfaces/location';
 
-export function useRastreador(idUsuario: any) {
+export function useRastreador(userName: string) {
   const [activo, setActivo] = useState(false);
   const [mensaje, setMensaje] = useState("apagado");
 
@@ -15,8 +15,6 @@ export function useRastreador(idUsuario: any) {
  //estructura pdf movileslocation parte 1
  const { locationStatus, requestLocationPermission } = usePermissionStore();
 
-  // ... imports igual que antes ...
-
   const capturarYEnviar = useCallback(async () => {
     try {
       let location = await Location.getCurrentPositionAsync({});
@@ -25,15 +23,14 @@ export function useRastreador(idUsuario: any) {
       
       setMensaje(`Rastreando... \nLat: ${lat.toFixed(4)}\nLon: ${lon.toFixed(4)}`);
       
-      await enviarCoordenadas(lat, lon, idUsuario);
+      await enviarCoordenadas(lat, lon, userName);
       
     } catch (error) {
       console.log("Error en el ciclo:", error);
       setMensaje("Error enviando o sin respuesta");
     }
-  }, [idUsuario]);
+  }, [userName]);
 
-// ... resto del useEffect igual que la versión anterior ...
   useEffect(() => {
   
     const cicloRastreo = async () => {
@@ -41,7 +38,7 @@ export function useRastreador(idUsuario: any) {
 
       await capturarYEnviar();
 
-      timerRef.current = setTimeout(cicloRastreo, 5000);
+      timerRef.current = setTimeout(cicloRastreo, 10000);
     };
 
     if (activo && locationStatus === PermissionStatus.GRANTED) {
