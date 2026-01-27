@@ -39,7 +39,7 @@ public class GestorCliente implements Runnable {
             else if (nuevo.split(",").length == 3) {
                 Gson gson = new Gson();
                 Cliente c = gson.fromJson(nuevo, Cliente.class);
-                (new BBDD()).insertarCliente(c);
+                salida.println((new BBDD()).insertarCliente(c));
             }
             else {
                 //mejorar esto

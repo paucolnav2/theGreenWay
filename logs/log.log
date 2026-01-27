@@ -16,3 +16,19 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
 [2026-01-21 22:24:29] [SEVERE] [GestorCliente run] Exception in thread Thread-1: com.google.gson.stream.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 1 column 63 path $. 
+[2026-01-26 11:19:09] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-0: The url cannot be null. 
+[2026-01-26 11:22:47] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-0: The url cannot be null. 
+[2026-01-26 11:24:56] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-0: The url cannot be null. 
+[2026-01-26 11:27:49] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-0: The url cannot be null. 
+[2026-01-26 11:45:03] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-26 11:50:47] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-26 11:51:29] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-0: Access denied for user 'root'@'172.18.0.1' (using password: YES). 
+[2026-01-26 14:08:48] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-9: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
+[2026-01-26 14:12:44] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-11: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
+[2026-01-26 14:13:13] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-12: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
+[2026-01-26 14:14:09] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-13: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
+[2026-01-26 14:15:54] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-14: Duplicate entry '0' for key 'usuarios.PRIMARY'. 

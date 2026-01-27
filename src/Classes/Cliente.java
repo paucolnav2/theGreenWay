@@ -3,12 +3,12 @@ package Classes;
 public class Cliente {
     private double lat;
     private double lon;
-    private int userId;
+    private String userName;
 
-    public Cliente(double lat, double lon, int userId) {
+    public Cliente(double lat, double lon, String userName) {
         this.lat = lat;
         this.lon = lon;
-        this.userId = userId;
+        this.userName = userName;
     }
 
     public double getLat() {
@@ -19,7 +19,7 @@ public class Cliente {
         return lon;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 }
