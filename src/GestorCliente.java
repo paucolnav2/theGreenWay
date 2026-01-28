@@ -28,9 +28,14 @@ public class GestorCliente implements Runnable {
             String nuevo = br.readLine();
             System.out.println("Cliente " + socket.getInetAddress() + ": " + nuevo);
 
-            /*String [] nuevoLista = nuevo.split(",");
-            Classes.Cliente c = new Classes.Cliente(Double.parseDouble(nuevoLista[0].split(":")[1]), Double.parseDouble(nuevoLista[1].split(":")[1]), Integer.parseInt((nuevoLista[2].split(":")[1]).replace("}","")));
-            */
+            if (nuevo == null) {
+                System.out.println("Entrada nula.");
+                return;
+            }
+            if (nuevo.isEmpty()) {
+                System.out.println("Entrada vacía.");
+                return;
+            }
             if (nuevo.split(",").length == 2) {
                 Gson gson = new Gson();
                 Usuarios u = gson.fromJson(nuevo, Usuarios.class);
@@ -42,8 +47,7 @@ public class GestorCliente implements Runnable {
                 salida.println((new BBDD()).insertarCliente(c));
             }
             else {
-                //mejorar esto
-                System.out.println("Entrada nula");
+                System.out.println("Entrada de longitud incorrecta");
             }
             System.out.println("Entrada añadida.");
         } catch (IOException e) {

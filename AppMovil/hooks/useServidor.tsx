@@ -2,7 +2,7 @@ import TcpSocket from 'react-native-tcp-socket';
 
 export function useServidor() {
   
-  const IP_SERVIDOR = "172.30.77.51"; 
+  const IP_SERVIDOR = "10.0.2.2";
   const PUERTO = 8080;
 
   const enviarCoordenadas = (latitud: any, longitud: any, userName: any) => {
