@@ -9,12 +9,17 @@ export function useRastreador(userName: string) {
   const [mensaje, setMensaje] = useState("apagado");
   const [ruta, setRuta] = useState<{latitude: number; longitude: number}[]>([]);
 
+  const activoRef = useRef(activo);
   const timerRef = useRef<NodeJS.Timeout | number>(null);
   const { enviarCoordenadas } = useServidor();
 
   // https://stackoverflow.com/questions/76083826/how-do-i-get-the-current-location-in-react-native-expo
  //estructura pdf movileslocation parte 1
  const { locationStatus, requestLocationPermission } = usePermissionStore();
+
+  useEffect(() => {
+    activoRef.current = activo;
+  }, [activo]);
 
   const capturarYEnviar = useCallback(async () => {
     try {
@@ -36,9 +41,11 @@ export function useRastreador(userName: string) {
   useEffect(() => {
   
     const cicloRastreo = async () => {
-      if (!activo || locationStatus !== PermissionStatus.GRANTED) return;
+      if (!activoRef.current || locationStatus !== PermissionStatus.GRANTED) return;
 
       await capturarYEnviar();
+
+      if (!activoRef.current) return;
 
       timerRef.current = setTimeout(cicloRastreo, 5000);
     };

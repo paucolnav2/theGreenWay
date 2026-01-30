@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import { useServidor } from '@/hooks/useServidor';
 import CryptoJS from 'crypto-js'
 import { createAnimatedComponent } from 'react-native-reanimated/lib/typescript/css/component';
+import * as FileSystem from 'expo-file-system/legacy';
 
 export function useAuth() {
     const router = useRouter();
@@ -11,6 +12,24 @@ export function useAuth() {
     const [pass, setPass] = useState("");
     const [cargando, setCargando] = useState(false);
     const [error, setError] = useState("");
+
+    const SESSION_FILE = ((FileSystem as any).documentDirectory) + 'session.txt';
+
+    useEffect(() => {
+        const checkSession = async () => {
+            try {
+                const savedUser = await FileSystem.readAsStringAsync(SESSION_FILE);
+                if (savedUser) {
+                    router.replace({
+                        pathname: "/(drawer)",
+                        params: { idUsuario: savedUser } 
+                    });
+                }
+            } catch (e) {
+            }
+        };
+        checkSession();
+    }, []);
 
     const onLoginPress = async () => {
         setError("");
@@ -27,6 +46,7 @@ export function useAuth() {
             const esValido = await validarCredenciales(user, passEncryptada);
             
             if (esValido) {
+                await FileSystem.writeAsStringAsync(SESSION_FILE, user);
                 router.replace({
                     pathname: "/(drawer)",
                     params: { idUsuario: user } 
@@ -40,7 +60,10 @@ export function useAuth() {
             setCargando(false);
         }
     };
-const cerrarSesion = () => {
+const cerrarSesion = async () => {
+        try {
+            await FileSystem.deleteAsync(SESSION_FILE, { idempotent: true });
+        } catch (e) {}
         router.replace("/login"); 
     };
 

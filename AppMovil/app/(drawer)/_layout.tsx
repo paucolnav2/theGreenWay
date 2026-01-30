@@ -7,10 +7,13 @@ import CustomDrawerContent from '@/components/CustomDrawer';
 
 function LogoTitle() {
   return (
-    <View className="flex-row items-center justify-center">
+    <View 
+      className="flex-row items-center justify-center" 
+      pointerEvents="none" 
+    >
        <Image
         source={require('@/assets/images/logo-greendelivery.png')}
-        style={{ width: 180, height: 60 }}
+        style={{ width: 540, height: 180 }}
         resizeMode="contain"
       />
     </View>
