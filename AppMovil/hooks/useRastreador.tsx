@@ -7,6 +7,7 @@ import { PermissionStatus } from '@/infrastructure/interfaces/location';
 export function useRastreador(userName: string) {
   const [activo, setActivo] = useState(false);
   const [mensaje, setMensaje] = useState("apagado");
+  const [ruta, setRuta] = useState<{latitude: number; longitude: number}[]>([]);
 
   const timerRef = useRef<NodeJS.Timeout | number>(null);
   const { enviarCoordenadas } = useServidor();
@@ -20,6 +21,7 @@ export function useRastreador(userName: string) {
       let location = await Location.getCurrentPositionAsync({});
       const lat = location.coords.latitude;
       const lon = location.coords.longitude;
+      setRuta(prev => [...prev, { latitude: lat, longitude: lon }]);
       
       setMensaje(`Rastreando... \nLat: ${lat.toFixed(4)}\nLon: ${lon.toFixed(4)}`);
       
@@ -38,7 +40,7 @@ export function useRastreador(userName: string) {
 
       await capturarYEnviar();
 
-      timerRef.current = setTimeout(cicloRastreo, 10000);
+      timerRef.current = setTimeout(cicloRastreo, 5000);
     };
 
     if (activo && locationStatus === PermissionStatus.GRANTED) {
@@ -59,6 +61,7 @@ export function useRastreador(userName: string) {
       if (locationStatus === PermissionStatus.GRANTED) {
         setActivo(true);
         setMensaje("Iniciando...");
+        setRuta([]);
       } else {
         const status = await requestLocationPermission();
         if (status === PermissionStatus.GRANTED) {
@@ -72,8 +75,9 @@ export function useRastreador(userName: string) {
   };
 
   return {
-    activo,
-    mensaje,
-    alternar
-  };
+  activo,
+  mensaje,
+  alternar,
+  ruta, 
+};
 }

@@ -28,7 +28,7 @@ export function useAuth() {
             
             if (esValido) {
                 router.replace({
-                    pathname: "/(tabs)",
+                    pathname: "/(drawer)",
                     params: { idUsuario: user } 
                 });
             } else {
@@ -40,6 +40,9 @@ export function useAuth() {
             setCargando(false);
         }
     };
+const cerrarSesion = () => {
+        router.replace("/login"); 
+    };
 
     return {
         user,    
@@ -48,6 +51,7 @@ export function useAuth() {
         cargando,
         setUser, 
         setPass,
-        onLoginPress
+        onLoginPress,
+        cerrarSesion 
     };
 }
