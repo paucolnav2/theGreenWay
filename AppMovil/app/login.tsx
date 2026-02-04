@@ -1,8 +1,7 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, View, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/hooks/useAuth'; 
-
 
 export default function LoginScreen() {
     const { user, pass, error, cargando, setUser, setPass, onLoginPress } = useAuth();
@@ -18,12 +17,17 @@ export default function LoginScreen() {
                     contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
                     keyboardShouldPersistTaps="handled"
                 >
-                    <View className="flex-1 justify-center items-center p-5">
+                    <View className="flex-1 justify-start items-center mt-12 p-5">
                         <View className="w-full max-w-sm">
                             
-                            <Text className="text-3xl font-bold text-[#32CD32] mb-8 text-center">
-                                GreenDelivery
-                            </Text>
+                            <View className="items-center mb-8">
+                                <Image 
+                                    source={require('@/assets/images/dgfdg.png')}
+                                    style={{ width: 300, height: 300 }}
+                                    resizeMode="contain"
+                                />
+                            </View>
+
                             <Text className="text-gray-500 mb-2">Usuario</Text>
                             <TextInput
                                 className="w-full bg-gray-100 p-4 rounded-xl mb-4 border border-gray-200"
