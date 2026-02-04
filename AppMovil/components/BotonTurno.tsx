@@ -1,38 +1,38 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { useRastreador } from '../hooks/useRastreador';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function BotonTurno({ idUsuario }: any) {
-  // trabaja o no
-  const { activo, mensaje, alternar } = useRastreador(idUsuario);
+
+interface BotonTurnoProps {
+  activo: boolean;
+  mensaje: string;
+  alternar: () => void;
+}
+
+export default function BotonTurno({ activo, mensaje, alternar }: BotonTurnoProps) {
+
 
   return (
-    <View className="w-full flex-1 items-center  ">
-
-
+    <View className="w-full flex-1 items-center">
+      
       {/* Boton ubi*/}
       <TouchableOpacity
-        className={`w-64 h-64 justify-center items-center rounded-full border-8 shadow-xl ${activo ? 'bg-red-500 border-red-100' : 'bg-[#32CD32] border-gray-100'
+        className={`w-60 h-60 mt-8 justify-center items-center rounded-full border-8 shadow-xl ${activo ? 'bg-red-500 border-red-100' : 'bg-[#32CD32] border-gray-100'
           }`}
         onPress={alternar}
         activeOpacity={0.7}
       >
         <Ionicons
           name={activo ? "stop" : "bicycle"}
-          size={50}
+          size={60}
           color="white"
           style={{ marginBottom: 10 }}
         />
 
-        <Text className="text-white text-3xl font-bold text-center leading-8">
+        <Text className="text-white text-2xl font-bold text-center leading-8">
           {activo ? "PEDIDO\nENTREGADO" : "INICIAR\nRUTA"}
         </Text>
       </TouchableOpacity>
-
-
-
-
 
       {/* coords */}
       {activo && (

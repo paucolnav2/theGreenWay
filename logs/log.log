@@ -32,3 +32,25 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 [2026-01-26 14:13:13] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-12: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
 [2026-01-26 14:14:09] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-13: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
 [2026-01-26 14:15:54] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-14: Duplicate entry '0' for key 'usuarios.PRIMARY'. 
+[2026-01-30 08:38:05] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 08:38:24] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-1: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 08:38:27] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-2: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 08:38:50] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-3: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 08:39:40] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-4: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 08:42:35] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-5: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 08:55:56] [SEVERE] [BBDD comprobarCredenciales] Exception in thread Thread-0: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.. 
+[2026-01-30 09:40:54] [SEVERE] [BBDD insertarCliente] Exception in thread Thread-63: Duplicate entry '5-2026-01-30 08:40:54' for key 'logs.PRIMARY'. 
