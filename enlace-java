@@ -1,7 +1,0 @@
-npm install
-npm install expo
-npx expo install react-native-maps
-
-export JAVA_HOME=~/jdk-17.0.17+10
-export PATH=$JAVA_HOME/bin:$PATH
-npx expo run:android
